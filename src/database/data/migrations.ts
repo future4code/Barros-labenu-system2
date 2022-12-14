@@ -7,7 +7,7 @@ const createTable = async () => await connection.raw(`
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(80) UNIQUE NOT NULL,
         type ENUM("integral", "night"),
-        module ENUM('0', '1', '2', '3', '4', '5', '6', '7')
+        module ENUM('0', '1', '2', '3', '4', '5', '6')
     );    
 
     CREATE TABLE IF NOT EXISTS LabeSystem_Students (

@@ -15,4 +15,19 @@ export abstract class BaseDatabase {
          multipleStatements: true
       },
    });
+
+   abstract TABLE_NAME: string;
+   
+   public async create(item: any) {
+      await BaseDatabase.connection(this.TABLE_NAME).insert(item)
+   };
+
+   public async getAll(column:string, like:string, value:string) {
+      const result = await BaseDatabase.connection(this.TABLE_NAME).select().where(column, like, value)
+      return result
+   };
+
+   public async updateInfo(id: number, column: string, newValue: string) {
+      await BaseDatabase.connection(this.TABLE_NAME).where({id}).update(column, newValue)
+   }
 }
