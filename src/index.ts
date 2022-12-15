@@ -1,3 +1,7 @@
 import app from "./app";
+import { CreateInstructor } from "./endpoints/CreateInstructor";
 
-app.get("/teste", () => console.log('Olá'))
+
+
+//Create instructor
+app.post("/instructors", CreateInstructor)
