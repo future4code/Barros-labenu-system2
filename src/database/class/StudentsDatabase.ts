@@ -8,8 +8,8 @@ export class StudentsDatabase extends BaseDatabase {
         await super.create(student)
     }
 
-    public getAll(column: string, like: string, value: string) {
-        return super.getAll(column, like, value)
+    public searchFor(column: string, like: string, value: string) {
+        return super.searchFor(column, like, value)
     }
 
     public async updateInfo(id: number, column: string, newValue: string) {

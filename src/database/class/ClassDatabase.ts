@@ -9,6 +9,6 @@ export class ClassDatabase extends BaseDatabase{
     }
 
     public async getAllClass(column: any, notLike: any, value: any){
-        return await super.getAll(column, notLike, value)
+        return await super.searchFor(column, notLike, value)
     }
 }

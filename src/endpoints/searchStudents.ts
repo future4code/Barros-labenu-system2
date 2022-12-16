@@ -14,7 +14,7 @@ export const searchStudents = async (req: Request, res: Response): Promise<void>
             search = "%"
         }
 
-        const students = await studentDatabase.getAll("name", "like", `%${search}%`)
+        const students = await studentDatabase.searchFor("name", "like", `%${search}%`)
 
         for (let i = 0; i < students.length; i++) {
             const className = await connection.select("LabeSystem_Class.name")
