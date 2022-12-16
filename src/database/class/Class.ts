@@ -2,8 +2,8 @@ export default class Class {
     constructor (
         private id: string,
         private name: string,
-        private instructorsIds: string[],
-        private studentsIds: string[],
+        private instructorsIds: any[],
+        private studentsIds: any[],
         private module: string
     ) {
         this.id = id
