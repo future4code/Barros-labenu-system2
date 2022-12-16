@@ -39,7 +39,7 @@ export const searchStudents = async (req: Request, res: Response): Promise<void>
 
         if (students = []) {
             errorCode = 404
-            throw new Error("Nenhum estudante encontrado com o parâmetro de busca informado.");
+            throw new Error("No students found with the given search parameter.");
             
         }
         

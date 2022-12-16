@@ -16,31 +16,31 @@ export const createStudent = async (req: Request, res: Response): Promise<void> 
 
         if (!name) {
             errorCode = 422
-            throw new Error("Insira o nome do novo estudante.");
+            throw new Error("Provide new student's name.");
         }
 
         if (!email) {
             errorCode = 422
-            throw new Error("Insira o e-mail do novo estudante.");
+            throw new Error("Provide new student's email.");
         }
 
         const searchEmail = await studentDatabase.searchFor("email", "like", email)
         
         if (searchEmail.length > 0) {
             errorCode = 404
-            throw new Error("E-mail já cadastrado."); 
+            throw new Error("E-mail address already in use."); 
         }
 
         if (!birth_date) {
             errorCode = 422
-            throw new Error("Insira a data de nascimento.");
+            throw new Error("Provide new student's birth date.");
         }
 
         const modifiedBirthDate = birth_date.split("/").reverse().join("-")
 
         if (hobbies.length < 1) {
             errorCode = 422
-            throw new Error("Insira ao menos um hobbie para continuar");            
+            throw new Error("Provide at least one hobby.");            
         }
 
         const student = new Student(
@@ -80,7 +80,7 @@ export const createStudent = async (req: Request, res: Response): Promise<void> 
             }
         }
 
-        res.status(201).send("Estudante adicionado com sucesso.")
+        res.status(201).send("Success! The student has been registered.")
 
     } catch (error:any) {
         res.status(errorCode).send(error.message)

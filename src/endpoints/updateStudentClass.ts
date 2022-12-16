@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { ClassDatabase } from "../database/class/ClassDatabase";
 import { StudentsDatabase } from "../database/class/StudentsDatabase";
 import { connection } from "../database/data/connection";
 
@@ -12,7 +13,7 @@ export const updateStudentClass = async (req: Request, res: Response): Promise<v
         
         if (!studentId || studentId === ":studentId") {
             errorCode = 422
-            throw new Error("Informe o ID do estudante.");
+            throw new Error("Provide student's ID.");
         }
 
         const studentsList = await studentDatabase.getAll()
@@ -20,15 +21,23 @@ export const updateStudentClass = async (req: Request, res: Response): Promise<v
 
         if (!findStudent) {
             errorCode = 404
-            throw new Error("ID de estudante não encontrado.");
+            throw new Error("Student's ID not found.");
         }
 
         if (!classId) {
             errorCode = 422
-            throw new Error("Informe o ID da nova turma.");
+            throw new Error("Provide new class' ID.");
         }
 
-        // inserir busca pela turma
+        const classDataBase = new ClassDatabase()
+        const classesList = await classDataBase.getAll()
+        const findClass = classesList.find(classes => classes.id === classId)
+
+        if (!findClass) {
+            errorCode = 404
+            throw new Error("New class' ID not found.");
+            
+        }
 
         const className = await connection.select("LabeSystem_Class.name")
         .from("LabeSystem_Class")
@@ -42,7 +51,7 @@ export const updateStudentClass = async (req: Request, res: Response): Promise<v
         .from("LabeSystem_Class")
         .where("id", studentUpdated.class_id)
 
-        res.status(200).send(`Estudante ID: ${studentId} alterado de TURMA ${className} para TURMA ${newClassName}.`)
+        res.status(200).send(`Student's ID: ${studentId} updated from CLASS ${className[0].name.toUpperCase()} to CLASS ${newClassName[0].name.toUpperCase()}.`)
     } catch (error:any) {
         res.status(errorCode).send(error.message)
     }
