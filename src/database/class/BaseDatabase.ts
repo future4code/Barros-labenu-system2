@@ -1,10 +1,10 @@
-import knex from "knex"
+import knex, { Knex } from "knex"
 import dotenv from "dotenv"
 
 dotenv.config()
 
 export abstract class BaseDatabase {
-   protected static connection = knex({
+   static connection = knex({
       client: "mysql",
       connection: {
          host: process.env.DB_HOST,
@@ -20,12 +20,12 @@ export abstract class BaseDatabase {
    
    public async create(item: any) {
       await BaseDatabase.connection(this.TABLE_NAME).insert(item)
-   };
+   }
 
    public async getAll(column:string, like:string, value:string) {
       const result = await BaseDatabase.connection(this.TABLE_NAME).select().where(column, like, value)
       return result
-   };
+   }
 
    public async updateInfo(id: number, column: string, newValue: string) {
       await BaseDatabase.connection(this.TABLE_NAME).where({id}).update(column, newValue)
