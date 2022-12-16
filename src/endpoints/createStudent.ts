@@ -24,7 +24,7 @@ export const createStudent = async (req: Request, res: Response): Promise<void> 
             throw new Error("Insira o e-mail do novo estudante.");
         }
 
-        const searchEmail = await studentDatabase.getAll("email", "like", email)
+        const searchEmail = await studentDatabase.searchFor("email", "like", email)
         
         if (searchEmail.length > 0) {
             errorCode = 404

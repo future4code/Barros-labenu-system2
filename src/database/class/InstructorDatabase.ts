@@ -19,7 +19,21 @@ export default class InstructorDatabase extends BaseDatabase {
     }
 
     public async getByEmail(email: string) {
-        const result = await super.getAll("email", "like", email)
+        const result = await super.searchFor("email", "like", email)
+        return result
+    }
+
+    public async selectAllInstructors() {
+        const result = await super.getAll()
+        return result
+    }
+
+    public async getExpertise(id: string) {
+        const result = await BaseDatabase.connection.select("LabeSystem_Expertise.expertise_name")
+            .from("LabeSystem_Instructors_Expertise")
+            .join("LabeSystem_Expertise", "LabeSystem_Expertise.id", "=", "LabeSystem_Instructors_Expertise.expertise_id")
+            .where("instructor_id", id)
+        
         return result
     }
 }
