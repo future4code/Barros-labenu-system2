@@ -1,5 +1,4 @@
 import { Request, Response } from "express"
-import { BaseDatabase } from "../database/class/BaseDatabase"
 import { ClassDatabase } from "../database/class/ClassDatabase"
 
 export const createClass = async (req: Request, res: Response)=>{
@@ -14,16 +13,27 @@ export const createClass = async (req: Request, res: Response)=>{
         } if(module && name && (typeof(name) !== "string" || typeof(module) !== "string")){
             errorCode = 422
             throw new Error("The class name and class module requires string value.")  
+        } if(module &&
+            module !== "0" &&
+            module !== "1" &&
+            module !== "2" &&
+            module !== "3" &&
+            module !== "4" &&
+            module !== "5" &&
+            module !== "6"
+        ){
+            errorCode = 422
+            throw new Error(`Module ${module} does not exist. The possibles modules are: 0, 1, 2, 3, 4, 5 e 6.`)            
         }
 
-        let allClass = await BaseDatabase.connection("LabeSystem_Class").select("*").whereLike("name", name)
+        let classDB = new ClassDatabase()
+
+        let allClass = await classDB.searchFor("name", "like", name)
 
         if(allClass.length > 0){
             errorCode = 400 
             throw new Error("This class name already exists.")
         }
-
-        let classDB = new ClassDatabase()
 
         const id = Date.now().toString()
 

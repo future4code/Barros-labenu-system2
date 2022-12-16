@@ -2,11 +2,20 @@ POST http://localhost:3003/class/create
 Content-Type: application/json
 
 {
-    "name": "Silva",
-    "module": "5"
+    "name": "Fernandes",
+    "module": "2"
 }
 
 ###
 
 GET http://localhost:3003/class
 Content-Type: application/json
+
+###
+
+PATCH http://localhost:3003/class/update/1671219046511
+Content-Type: application/json
+
+{
+    "newModule": "0"
+}
