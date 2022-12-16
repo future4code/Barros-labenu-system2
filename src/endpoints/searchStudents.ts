@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { TStudent } from "../database/class/Student";
 import { StudentsDatabase } from "../database/class/StudentsDatabase";
 import { connection } from "../database/data/connection";
 
@@ -14,7 +13,7 @@ export const searchStudents = async (req: Request, res: Response): Promise<void>
             search = "%"
         }
 
-        const students = await studentDatabase.searchFor("name", "like", `%${search}%`)
+        let students = await studentDatabase.searchFor("name", "like", `%${search}%`)
 
         for (let i = 0; i < students.length; i++) {
             const className = await connection.select("LabeSystem_Class.name")
@@ -36,6 +35,12 @@ export const searchStudents = async (req: Request, res: Response): Promise<void>
 
             students[i].hobbies = studentHobbies
 
+        }
+
+        if (students = []) {
+            errorCode = 404
+            throw new Error("Nenhum estudante encontrado com o parâmetro de busca informado.");
+            
         }
         
         res.status(200).send(students)

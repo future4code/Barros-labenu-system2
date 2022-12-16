@@ -32,7 +32,7 @@ export abstract class BaseDatabase {
       return result
    }
 
-   public async updateInfo(id: number, column: string, newValue: string) {
+   public async updateInfo(id: string, column: string, newValue: string) {
       await BaseDatabase.connection(this.TABLE_NAME).where({id}).update(column, newValue)
    }
 }

@@ -48,7 +48,7 @@ export const createStudent = async (req: Request, res: Response): Promise<void> 
             name,
             email,
             modifiedBirthDate,
-            "1671118682648",
+            "0000000000000",
         )
 
         await studentDatabase.create(student)
