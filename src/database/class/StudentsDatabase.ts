@@ -12,7 +12,7 @@ export class StudentsDatabase extends BaseDatabase {
         return super.searchFor(column, like, value)
     }
 
-    public async updateInfo(id: number, column: string, newValue: string) {
+    public async updateInfo(id: string, column: string, newValue: string) {
         await super.updateInfo(id, column, newValue)
     }
 }
