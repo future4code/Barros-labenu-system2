@@ -37,10 +37,10 @@ export const searchStudents = async (req: Request, res: Response): Promise<void>
 
         }
 
-        if (students = []) {
+        if (students.length < 1) {
             errorCode = 404
             throw new Error("No students found with the given search parameter.");
-            
+
         }
         
         res.status(200).send(students)
