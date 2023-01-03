@@ -8,11 +8,13 @@ import { getAllInstructors } from "./endpoints/getAllInstructors";
 import { updateStudentClass } from "./endpoints/updateStudentClass";
 import { updateInstructorClass } from "./endpoints/updateInstructorClass";
 import { updateClassModule } from "./endpoints/updateClassModule";
+import { getStudentsByHobbies } from "./endpoints/getStudentsByHobbies";
 
 
 app.post("/students", createStudent)
 app.get("/students", searchStudents)
 app.patch("/students/:studentId", updateStudentClass)
+app.get("/hobbies", getStudentsByHobbies)
 
 //Create Instructor
 app.post("/instructors", createInstructor)
