@@ -28,7 +28,7 @@ export default class InstructorDatabase extends BaseDatabase {
         return result
     }
 
-    public async getExpertise(id: string) {
+    public async getExpertiseByInstructorId(id: string) {
         const result = await BaseDatabase.connection.select("LabeSystem_Expertise.expertise_name")
             .from("LabeSystem_Instructors_Expertise")
             .join("LabeSystem_Expertise", "LabeSystem_Expertise.id", "=", "LabeSystem_Instructors_Expertise.expertise_id")
