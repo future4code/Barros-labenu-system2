@@ -9,6 +9,7 @@ import { updateStudentClass } from "./endpoints/updateStudentClass";
 import { updateInstructorClass } from "./endpoints/updateInstructorClass";
 import { updateClassModule } from "./endpoints/updateClassModule";
 import { getStudentsByHobbies } from "./endpoints/getStudentsByHobbies";
+import { getUsersZodiacSigns } from "./endpoints/getUsersZodiacSigns";
 
 
 app.post("/students", createStudent)
@@ -33,6 +34,9 @@ app.get("/class", searchClass)
 
 //Update Class Module
 app.patch("/class/update/:id_class", updateClassModule)
+
+//Get Users Zodiac Signs
+app.get("/students_intructors_signs", getUsersZodiacSigns)
 
 
 

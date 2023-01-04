@@ -19,3 +19,18 @@ Content-Type: application/json
 {
     "newModule": "0"
 }
+
+###
+
+GET http://localhost:3003/students_intructors_signs
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/students
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/instructors
+Content-Type: "application/json"
