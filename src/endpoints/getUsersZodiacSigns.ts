@@ -1,241 +1,65 @@
 import { Request, Response } from "express";
-import { BaseDatabase } from "../database/class/BaseDatabase";
+import InstructorDatabase from "../database/class/InstructorDatabase";
 import ZodiacSigns from "../database/class/ZodiacSigns";
+import { StudentsDatabase } from "../database/class/StudentsDatabase";
 
 export const getUsersZodiacSigns = async (req: Request, res: Response) => {
     
     let errorCode = 400
+    let instructorsDB = new InstructorDatabase()
+    let studentsDB = new StudentsDatabase()
 
-    try {       
-        let ariesInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '03'
-            AND Day(birth_date) BETWEEN '21' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '04'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let ariesStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '03'
-            AND Day(birth_date) BETWEEN '21' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '04'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let aries = {students: ariesStudents[0], intructors: ariesInstructors[0]}
-
-        let taurusInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '04'
-            AND Day(birth_date) BETWEEN '21' AND '30'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '05'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let taurusStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '04'
-            AND Day(birth_date) BETWEEN '21' AND '30'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '05'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let taurus = {students: taurusStudents[0], intructors: taurusInstructors[0]}
-
-        let geminiInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '05'
-            AND Day(birth_date) BETWEEN '21' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '06'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let geminiStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '05'
-            AND Day(birth_date) BETWEEN '21' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '06'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let gemini = {students: geminiStudents[0], intructors: geminiInstructors[0]}
-
-        let cancerInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '06'
-            AND Day(birth_date) BETWEEN '21' AND '30'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '07'
-            AND Day(birth_date) BETWEEN '01' AND '22';
-        `)
-
-        let cancerStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '06'
-            AND Day(birth_date) BETWEEN '21' AND '30'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '07'
-            AND Day(birth_date) BETWEEN '01' AND '22';
-        `)
-
-        let cancer = {students: cancerStudents[0], intructors: cancerInstructors[0]}
-
-        let leoInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '07'
-            AND Day(birth_date) BETWEEN '23' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '08'
-            AND Day(birth_date) BETWEEN '01' AND '22';
-        `)
-
-        let leoStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '07'
-            AND Day(birth_date) BETWEEN '23' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '08'
-            AND Day(birth_date) BETWEEN '01' AND '22';
-        `)
-
-        let leo = {students: leoStudents[0], intructors: leoInstructors[0]}
-
-        let virgoInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '08'
-            AND Day(birth_date) BETWEEN '23' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '09'
-            AND Day(birth_date) BETWEEN '01' AND '22';
-        `)
-
-        let virgoStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '08'
-            AND Day(birth_date) BETWEEN '23' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '09'
-            AND Day(birth_date) BETWEEN '01' AND '22';
-        `)
-
-        let virgo = {students: virgoStudents[0], intructors: virgoInstructors[0]}
-
-        let libraInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '09'
-            AND Day(birth_date) BETWEEN '23' AND '30'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '10'
-            AND Day(birth_date) BETWEEN '01' AND '22';
-        `)
-
-        let libraStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '09'
-            AND Day(birth_date) BETWEEN '23' AND '30'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '10'
-            AND Day(birth_date) BETWEEN '01' AND '22';
-        `)
-
-        let libra = {students: libraStudents[0], intructors: libraInstructors[0]}
-
-        let scorpioInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '10'
-            AND Day(birth_date) BETWEEN '23' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '11'
-            AND Day(birth_date) BETWEEN '01' AND '21';
-        `)
-
-        let scorpioStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '10'
-            AND Day(birth_date) BETWEEN '23' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '11'
-            AND Day(birth_date) BETWEEN '01' AND '21';
-        `)
-
-        let scorpio = {students: scorpioStudents[0], intructors: scorpioInstructors[0]}
-
-        let sagittariuInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '11'
-            AND Day(birth_date) BETWEEN '22' AND '30'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '12'
-            AND Day(birth_date) BETWEEN '01' AND '21';
-        `)
-
-        let sagittariuStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '11'
-            AND Day(birth_date) BETWEEN '22' AND '30'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '12'
-            AND Day(birth_date) BETWEEN '01' AND '21';
-        `)
-
-        let sagittariu = {students: sagittariuStudents[0], intructors: sagittariuInstructors[0]}
-
-        let capricornInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '12'
-            AND Day(birth_date) BETWEEN '22' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '01'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let capricornStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '12'
-            AND Day(birth_date) BETWEEN '22' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '01'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let capricorn = {students: capricornStudents[0], intructors: capricornInstructors[0]}
-
-        let aquariusInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '01'
-            AND Day(birth_date) BETWEEN '21' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '02'
-            AND Day(birth_date) BETWEEN '01' AND '18';
-        `)
-
-        let aquariusStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '01'
-            AND Day(birth_date) BETWEEN '21' AND '31'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '02'
-            AND Day(birth_date) BETWEEN '01' AND '18';
-        `)
-
-        let aquarius = {students: aquariusStudents[0], intructors: aquariusInstructors[0]}
-
-        let piscesInstructors = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '02'
-            AND Day(birth_date) BETWEEN '19' AND '29'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Instructors WHERE Month(birth_date) = '03'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let piscesStudents = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '02'
-            AND Day(birth_date) BETWEEN '19' AND '29'
-            UNION
-            SELECT name, birth_date FROM LabeSystem_Students WHERE Month(birth_date) = '03'
-            AND Day(birth_date) BETWEEN '01' AND '20';
-        `)
-
-        let pisces = {students: piscesStudents[0], intructors: piscesInstructors[0]}
+    try {     
+        //Aries
+        let ariesStudents = await studentsDB.getStudentsZodiacSigns('03', '04', '21', '31', '01', '20')
+        let ariesInstructors = await instructorsDB.getInstructorsZodiacSigns('03', '04', '21', '31', '01', '20')
+        //Taurus
+        let taurusStudents = await studentsDB.getStudentsZodiacSigns('04', '05', '21', '30', '01', '20')
+        let taurusInstructors = await instructorsDB.getInstructorsZodiacSigns('04', '05', '21', '30', '01', '20')
+        //Gemini
+        let geminiStudents = await studentsDB.getStudentsZodiacSigns('05', '06', '21', '31', '01', '20')
+        let geminiInstructors = await instructorsDB.getInstructorsZodiacSigns('05', '06', '21', '31', '01', '20')
+        //Cancer
+        let cancerStudents = await studentsDB.getStudentsZodiacSigns('06', '07', '21', '30', '01', '22')
+        let cancerInstructors = await instructorsDB.getInstructorsZodiacSigns('06', '07', '21', '30', '01', '22')
+        //Leo      
+        let leoStudents = await studentsDB.getStudentsZodiacSigns('07', '08', '23', '31', '01', '22')
+        let leoInstructors = await instructorsDB.getInstructorsZodiacSigns('07', '08', '23', '31', '01', '22')        
+        //Virgo
+        let virgoStudents = await studentsDB.getStudentsZodiacSigns('08', '09', '23', '31', '01', '22')
+        let virgoInstructors = await instructorsDB.getInstructorsZodiacSigns('08', '09', '23', '31', '01', '22')        
+        //Libra
+        let libraStudents = await studentsDB.getStudentsZodiacSigns('09', '10', '23', '30', '01', '22')
+        let libraInstructors = await instructorsDB.getInstructorsZodiacSigns('09', '10', '23', '30', '01', '22')        
+        //Scorpio
+        let scorpioStudents = await studentsDB.getStudentsZodiacSigns('10', '11', '23', '31', '01', '21')
+        let scorpioInstructors = await instructorsDB.getInstructorsZodiacSigns('10', '11', '23', '31', '01', '21')        
+        //Sagittarius
+        let sagittariuStudents = await studentsDB.getStudentsZodiacSigns('11', '12', '22', '30', '01', '21')
+        let sagittariuInstructors = await instructorsDB.getInstructorsZodiacSigns('11', '12', '22', '30', '01', '21')        
+        //Capricorn
+        let capricornStudents = await studentsDB.getStudentsZodiacSigns('12', '01', '22', '31', '01', '20')
+        let capricornInstructors = await instructorsDB.getInstructorsZodiacSigns('12', '01', '22', '31', '01', '20')        
+        //Aquarius
+        let aquariusStudents = await studentsDB.getStudentsZodiacSigns('01', '02', '21', '31', '01', '18')
+        let aquariusInstructors = await instructorsDB.getInstructorsZodiacSigns('01', '02', '21', '31', '01', '18')
+        //Pisces
+        let piscesStudents = await studentsDB.getStudentsZodiacSigns('02', '03', '19', '29', '01', '20')
+        let piscesInstructors = await instructorsDB.getInstructorsZodiacSigns('02', '03', '19', '29', '01', '20')        
 
         let zodiacSigns = new ZodiacSigns(
-            aries,
-            taurus,
-            gemini,
-            cancer,
-            leo,
-            virgo,
-            libra,
-            scorpio,
-            sagittariu,
-            capricorn,
-            aquarius,
-            pisces
+            {students: ariesStudents, intructors: ariesInstructors},
+            {students: taurusStudents, intructors: taurusInstructors},
+            {students: geminiStudents, intructors: geminiInstructors},
+            {students: cancerStudents, intructors: cancerInstructors},
+            {students: leoStudents, intructors: leoInstructors},
+            {students: virgoStudents, intructors: virgoInstructors},
+            {students: libraStudents, intructors: libraInstructors},
+            {students: scorpioStudents, intructors: scorpioInstructors},
+            {students: sagittariuStudents, intructors: sagittariuInstructors},
+            {students: capricornStudents, intructors: capricornInstructors},
+            {students: aquariusStudents, intructors: aquariusInstructors},
+            {students: piscesStudents, intructors: piscesInstructors}
         )
         
         res.status(200).send(zodiacSigns)              
@@ -244,21 +68,3 @@ export const getUsersZodiacSigns = async (req: Request, res: Response) => {
         res.status(errorCode).send(err.message)
     }
 }
-
-        /*  let instructorsDB = new InstructorDatabase()
-        let studentsDB = new StudentsDatabase()
-
-        let allInstructors = await instructorsDB.selectAllInstructors()
-        let allStudents = await studentsDB.getAll() 
-
-        for(let i = 0; i < allInstructors.length; i++){
-            allInstructors[i].birth_date = "2022" + "-" + ((allInstructors[i].birth_date.getMonth() + 1)) + "-" + ((allInstructors[i].birth_date.getDate()))
-        }
-
-        for(let i = 0; i < allStudents.length; i++){
-            allStudents[i].birth_date = new Date("2000" + allStudents[i].birth_date.toString().split("").splice(4, 6).join(""))
-        } 
-        
-        let result = await BaseDatabase.connection.raw(`
-            SELECT name, birth_date FROM LabeSystem_Students WHERE LEFT (birth_date, 10)  BETWEEN '2000-01-01' AND '2000-12-31';
-        `) */

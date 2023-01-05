@@ -11,32 +11,40 @@ import { updateClassModule } from "./endpoints/updateClassModule";
 import { getStudentsByHobbies } from "./endpoints/getStudentsByHobbies";
 import { getUsersZodiacSigns } from "./endpoints/getUsersZodiacSigns";
 
-
-app.post("/students", createStudent)
-app.get("/students", searchStudents)
-app.patch("/students/:studentId", updateStudentClass)
-app.get("/hobbies", getStudentsByHobbies)
-
-//Create Instructor
-app.post("/instructors", createInstructor)
-
 //Get All Instructors
 app.get("/instructors", getAllInstructors)
 
-//Update Instructor Class Id
-app.patch("/instructors/:instructor_id", updateInstructorClass)
+//Get Students By Hobbies
+app.get("/hobbies", getStudentsByHobbies)
 
-//Create Class
-app.post("/class/create", createClass)
+//Get Users Zodiac Signs
+app.get("/students_intructors_signs", getUsersZodiacSigns)
+
+//Search Students
+app.get("/students", searchStudents)
 
 //Search Active Classes
 app.get("/class", searchClass)
 
+//Create Instructor
+app.post("/instructors", createInstructor)
+
+//Create Student
+app.post("/students", createStudent)
+
+//Create Class
+app.post("/class/create", createClass)
+
+//Update Instructor Class Id
+app.patch("/instructors/:instructor_id", updateInstructorClass)
+
+//Update Student Class
+app.patch("/students/:studentId", updateStudentClass)
+
 //Update Class Module
 app.patch("/class/update/:id_class", updateClassModule)
 
-//Get Users Zodiac Signs
-app.get("/students_intructors_signs", getUsersZodiacSigns)
+
 
 
 
