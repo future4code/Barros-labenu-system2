@@ -24,4 +24,9 @@ export class StudentsDatabase extends BaseDatabase {
         const result = super.getZodiacSigns(firstMonth, secondMonth, firstDay, secondDay, thirdDay, fourthDay)
         return result
     }
+
+    public async getClassStudents(tableClassId: string, classId: string) {
+        const result = super.getUsers(tableClassId, classId)
+        return result
+    }
 }

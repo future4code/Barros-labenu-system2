@@ -46,4 +46,11 @@ export abstract class BaseDatabase {
         `)
         return result[0]
    }
+
+   public async getUsers(tableClassId: string, classId: string) {
+      const result = await BaseDatabase.connection("LabeSystem_Class").select("*")
+      .join(this.TABLE_NAME, `${tableClassId}`, "=", "LabeSystem_Class.id")
+      .whereLike(`${tableClassId}`, `${classId}`)
+      return result
+   }
 }

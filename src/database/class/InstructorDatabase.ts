@@ -40,4 +40,9 @@ export default class InstructorDatabase extends BaseDatabase {
         const result = super.getZodiacSigns(firstMonth, secondMonth, firstDay, secondDay, thirdDay, fourthDay)
         return result
     }
+
+    public async getClassInstructors(tableClassId: string, classId: string) {
+        const result = super.getUsers(tableClassId, classId)
+        return result
+    }
 }
