@@ -10,6 +10,7 @@ API REST developed with the objective of simulating Labenu system and practicing
 
 ## 🔗Documentation
 
+## Deploy
 
 ## ☑️Requests
 - Get All Instructors
@@ -37,3 +38,6 @@ API REST developed with the objective of simulating Labenu system and practicing
 2. cd Barros-labenu-system2
 3. npm install
 4. npm run start
+
+## Image
+![Image-workbench](./print-workbench.png)
