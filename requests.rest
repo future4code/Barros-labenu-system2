@@ -34,3 +34,8 @@ Content-Type: application/json
 
 GET http://localhost:3003/instructors
 Content-Type: "application/json"
+
+###
+
+GET http://localhost:3003/class/users
+Content-Type: "application/json"

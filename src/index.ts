@@ -10,12 +10,16 @@ import { updateInstructorClass } from "./endpoints/updateInstructorClass";
 import { updateClassModule } from "./endpoints/updateClassModule";
 import { getStudentsByHobbies } from "./endpoints/getStudentsByHobbies";
 import { getUsersZodiacSigns } from "./endpoints/getUsersZodiacSigns";
+import { getClassUsers } from "./endpoints/getClassUsers";
 
 //Get All Instructors
 app.get("/instructors", getAllInstructors)
 
 //Get Students By Hobbies
 app.get("/hobbies", getStudentsByHobbies)
+
+//Get Students and Instructors By Class
+app.get("/class/users", getClassUsers)
 
 //Get Users Zodiac Signs
 app.get("/students_intructors_signs", getUsersZodiacSigns)
