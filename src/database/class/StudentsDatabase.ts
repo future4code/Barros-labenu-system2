@@ -19,4 +19,9 @@ export class StudentsDatabase extends BaseDatabase {
     public async updateInfo(id: string, column: string, newValue: string) {
         await super.updateInfo(id, column, newValue)
     }
+
+    public async getStudentsZodiacSigns(firstMonth: string, secondMonth: string, firstDay: string, secondDay: string, thirdDay: string, fourthDay: string) {
+        const result = super.getZodiacSigns(firstMonth, secondMonth, firstDay, secondDay, thirdDay, fourthDay)
+        return result
+    }
 }

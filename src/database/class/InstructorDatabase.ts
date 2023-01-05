@@ -1,6 +1,5 @@
 import { BaseDatabase } from "./BaseDatabase"
 
-
 export default class InstructorDatabase extends BaseDatabase {
     TABLE_NAME = "LabeSystem_Instructors"
 
@@ -34,6 +33,11 @@ export default class InstructorDatabase extends BaseDatabase {
             .join("LabeSystem_Expertise", "LabeSystem_Expertise.id", "=", "LabeSystem_Instructors_Expertise.expertise_id")
             .where("instructor_id", id)
         
+        return result
+    }
+
+    public async getInstructorsZodiacSigns(firstMonth: string, secondMonth: string, firstDay: string, secondDay: string, thirdDay: string, fourthDay: string) {
+        const result = super.getZodiacSigns(firstMonth, secondMonth, firstDay, secondDay, thirdDay, fourthDay)
         return result
     }
 }
