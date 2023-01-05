@@ -1,33 +1,43 @@
-## LabenuSystem:
+<h1 align="center">API Rest LabeSystem</h1>
 
-Você estuda na Labenu_ há tanto tempo que já parecem anos, não é? Então, hoje, vamos pedir para criar um sistema que represente o básico da nossa organização. 
+##  ℹ️About
+API REST developed with the objective of simulating Labenu system and practicing Node.js, TypeScript, Express, Knex, and MySQL. CRUD (Create, Read, Update and Delete) requests were built respecting the semantics and organization necessary for the elaboration of an API with RESTful principles.
 
-Ele deve possuir, ao menos, as 3 entidades importantes:
+##  👩‍💻Developers
+- <a href="https://github.com/francinehahn" target="_blank"><p>Francine Hahn</p></a>
+- <a href="https://github.com/gioivieira" target="_blank"><p>Giovana Inez Vieira</p></a>
+- <a href="https://github.com/mariafmf" target="_blank"><p>Maria Fernandez de Moura Ferro</p></a>
 
-1. Estudantes 
+## 🔗Documentation
 
-    Representa estudantes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e os principais hobbies dele. 
+## Deploy
 
-2. Docente
+## ☑️Requests
+- Get All Instructors
+- Get Students By Hobbies
+- Get Students and Instructors By Class
+- Get Users Zodiac Signs
+- Search Class
+- Search Students
+- Update Class Module
+- Update Instructor's Class
+- Update Student's Class
+- Create Class
+- Create Instructor
+- Create Student
 
-    Representa docentes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e todas as especialidades dele. Há 7 especialidades: React, Redux, CSS, Testes, Typescript, Programação Orientada a Objetos e Backend
+## 💻Technologies
+- Node.js
+- TypeScript
+- Express.js
+- Knex.js
+- MySQL
 
-3. Turma
+## 🛰Running the project
+1. git clone https://github.com/future4code/Barros-labenu-system2.git
+2. cd Barros-labenu-system2
+3. npm install
+4. npm run start
 
-    Toda turma é composta das seguintes características: id, nome, data de início, data de término, lista de professores responsáveis, uma lista de alunos e módulo atual em que a turma está.
-
-    O módulo pode assumir os valores de 1 a 7 ou `undefined`, indicando que as aulas dessa turma ainda não começaram. Para esse exercício, vamos considerar que existam dois tipos de turma: integral ou noturna. Há uma restrição para o nome das turmas noturnas: tem que terminar com `-na-night`.
-
-As funcionalidades básicas são:
-
-→ Criar estudante;
-
-→ Criar docente;
-
-→ Criar turma;
-
-→ Adicionar estudante na turma;
-
-→ Adicionar docente na turma;
-
-→ Pegar a idade de algum estudante a partir do id
+## Image
+![Image-workbench](./print-workbench.png)
