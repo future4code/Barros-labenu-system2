@@ -3,27 +3,15 @@ import { ClassDatabase } from "../database/class/ClassDatabase"
 
 export const createClass = async (req: Request, res: Response)=>{
     let errorCode = 400
-    let {name, module} = req.body
+    let name = req.body.name
+    const id = Date.now().toString()
+    const module = "0"
 
     try {
 
         if(!name){
             errorCode = 422
             throw new Error("Provide the class name.")            
-        } if(module && name && (typeof(name) !== "string" || typeof(module) !== "string")){
-            errorCode = 422
-            throw new Error("The class name and class module requires string value.")  
-        } if(module &&
-            module !== "0" &&
-            module !== "1" &&
-            module !== "2" &&
-            module !== "3" &&
-            module !== "4" &&
-            module !== "5" &&
-            module !== "6"
-        ){
-            errorCode = 422
-            throw new Error(`Module ${module} does not exist. The possibles modules are: 0, 1, 2, 3, 4, 5 e 6.`)            
         }
 
         let classDB = new ClassDatabase()
@@ -35,11 +23,9 @@ export const createClass = async (req: Request, res: Response)=>{
             throw new Error("This class name already exists.")
         }
 
-        const id = Date.now().toString()
+        await classDB.createClass({id, name, module})
 
-        classDB.createClass({id, name, module})
-
-        res.status(201).end()
+        res.status(201).send("Success! The class has been registered.")
 
     } catch (err: any) {
         res.status(errorCode).send(err.message)
