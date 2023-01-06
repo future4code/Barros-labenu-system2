@@ -14,17 +14,17 @@ API REST developed with the objective of simulating Labenu system and practicing
 
 ## ☑️Requests
 - Get All Instructors
+- Get All Students
 - Get Students By Hobbies
 - Get Students and Instructors By Class
 - Get Users Zodiac Signs
-- Search Class
-- Search Students
-- Update Class Module
+- Get Active Classes
 - Update Instructor's Class
 - Update Student's Class
-- Create Class
+- Update Class Module
 - Create Instructor
 - Create Student
+- Create Class
 
 ## 💻Technologies
 - Node.js
