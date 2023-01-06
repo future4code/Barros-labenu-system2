@@ -89,7 +89,6 @@ const insertData = async () => await connection.raw(`
     INSERT INTO LabeSystem_Hobbies VALUES ('1571118681127', 'Pescar');
     INSERT INTO LabeSystem_Hobbies VALUES ('1571118681348', 'Desenhar');
     INSERT INTO LabeSystem_Hobbies VALUES ('1571118688775', 'Cantar');
-    INSERT INTO LabeSystem_Hobbies VALUES ('1571118689987', 'Ouvir música');
 
     INSERT INTO LabeSystem_Expertise VALUES ('1571118778555', 'Typescript');
     INSERT INTO LabeSystem_Expertise VALUES ('1571118878599', 'Backend');

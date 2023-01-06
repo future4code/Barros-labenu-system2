@@ -39,7 +39,7 @@ export const updateClassModule = async (req: Request, res: Response) =>{
 
         classDB.updateModule(idClass, "module", newModule)
 
-        res.status(200).end()
+        res.status(200).send("Success! Class module has been updated.")
         
     } catch (err: any) {
         res.status(errorCode).send(err.message)

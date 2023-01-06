@@ -12,6 +12,7 @@ import { getStudentsByHobbies } from "./endpoints/getStudentsByHobbies";
 import { getUsersZodiacSigns } from "./endpoints/getUsersZodiacSigns";
 import { getClassUsers } from "./endpoints/getClassUsers";
 
+
 //Get All Instructors
 app.get("/instructors", getAllInstructors)
 
@@ -39,10 +40,10 @@ app.post("/students", createStudent)
 //Create Class
 app.post("/class/create", createClass)
 
-//Update Instructor Class Id
+//Update Instructor's Class
 app.patch("/instructors/:instructor_id", updateInstructorClass)
 
-//Update Student Class
+//Update Student's Class
 app.patch("/students/:studentId", updateStudentClass)
 
 //Update Class Module
