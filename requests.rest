@@ -1,0 +1,41 @@
+POST http://localhost:3003/class/create
+Content-Type: application/json
+
+{
+    "name": "Fernandes",
+    "module": "2"
+}
+
+###
+
+GET http://localhost:3003/class
+Content-Type: application/json
+
+###
+
+PATCH http://localhost:3003/class/update/1672922423358
+Content-Type: application/json
+
+{
+    "newModule": "3"
+}
+
+###
+
+GET http://localhost:3003/students_intructors_signs
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/students
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/instructors
+Content-Type: "application/json"
+
+###
+
+GET http://localhost:3003/class/users
+Content-Type: "application/json"
